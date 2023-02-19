@@ -1,0 +1,59 @@
+Online-Ticket
+ICE Fahrkarte
+Gültigkeit: ab 11.11.2011
+Gilt nur für eingetragene Züge/IC-Busse und Tage/Zeiten.
+NV=Nahverkehrszüge vor/nach Fernverkehrszügen.
+Sparpreis (Hin- und Rückfahrt)
+Klasse: 2
+Erw: 5
+Hinfahrt: EineStadt+City Zielhausen+City, mit ICE, (SPX77/22)
+Rückfahrt: Zielhausen+City EineStadt+City, mit ICE, (SPX77/22)
+Über: H: Y-Hbf 10:55 ICE888 R: Q-Hbf 18:55 ICE889
+Storno vor 1. Geltungstag kostenpflichtig.
+Zahlungspositionen und Preis
+Positionen Preis MwSt (D) 19% MwSt D: 7%
+ICE Fahrkarte 1 22,01€ 22,01€ 2,88€
+Reservierungen 2 9,00€ 9,00€ 0,58€
+Summe 31,01€ 31,01€ 10,60€
+Sofort.-Zahlung
+Betrag 30,90€ Transaktions-Nr 123-456-789-12
+Datum 31.10.2011
+Angerechnete Gutscheine
+Gutscheine 0,11€
+Der oben genannte Betrag wurde von Ihnen per "Sofort." bezahlt. Die Buchung Ihres
+Online-Tickets erfolgte am 31.10.2011 16:00 Uhr. DB Fernverkehr AG/DB Regio AG,
+Stephensonstr. 1, 603 Frankfurt, Steuernummer: 29/001/6.
+Barcode bitte nicht knicken!
+Hinfahrt:
+Gültig ab: 11.11.2011
+Zangenabdruck
+Herr John Doe
+Auftragsnummer: XX
+Ihre Reiseverbindung und Reservierung Hinfahrt am 11.11.2011
+Halt Datum Zeit Gleis Produkte Reservierung
+EineStadt Hbf 11.11. ab 10:55 22
+Zielhausen Hbf (tief) 11.11. an 11:11 7
+ICE 888 1 Sitzplatz, Wg. 7, Pl. 99, 1 Fenster, Großraum,
+Nichtraucher,
+Ruhebereich, Res.Nr. 1122 3344 445
+Ihre Reiseverbindung und Reservierung Rückfahrt am 11.11.2011
+Halt Datum Zeit Gleis Produkte Reservierung
+Zielhausen Hbf 11.11. ab 18:55 22
+EineStadt Hbf (tief) 11.11. an 19:11 7
+ICE 889 1 Sitzplatz, Wg. 7, Pl. 99, 1 Fenster, Großraum,
+Nichtraucher, Handy, Res.Nr. 1122 3344 445
+Wichtige Nutzungshinweise:
+- Ihre Fahrkarte gilt nur zusammen mit einem amtlichen Lichtbildausweis (z.B. Personalausweis) oder Ihrer BahnCard.
+- Das Online-Ticket gilt nur für den unter "Fahrkarte" angegebenen Reiseabschnitt. Die Übersicht "Ihre Reiseverbindung" enthält gegebenenfalls
+Reiseinformationen zu Teilstrecken (z.B. Bus oder Straßenbahn), für die eine weitere Fahrkarte erforderlich sein kann.
+- Wenn Ihr Ticket den Zusatz "+City" oder "City mobil" zeigt, gilt dieser nur am Tag der Hinfahrt bzw. am Tag der Rückfahrt.
+- Es gelten die nationalen und internationalen Beförderungsbedingungen der DB AG. Innerhalb von Verkehrsverbünden und Tarifgemeinschaften
+gelten deren Bedingungen. Alle Bedingungen finden Sie unter: www.bahn.de/agb und www.diebefoerderer.de.
+- Bei einer zu erwartenden Verspätung ab 20 Minuten am Zielbahnhof Ihrer Fahrkarte ist die Zugbindung Ihrer Fahrt ohne besondere
+Bescheinigung aufgehoben.
+Ihre Reisedaten können sich kurzfristig durch Bauarbeiten oder andere erforderliche Fahrplananpassungen ändern.
+Bitte informieren Sie sich kurz vor Ihrer Reise über mögliche Änderungen Ihrer Reisedaten unter www.bahn.de/reiseplan oder mobil über die
+App DB Navigator. Achten Sie auch auf Informationen und Ansagen im Zug und am Bahnhof. Wir danken Ihnen für Ihre Buchung und wünschen
+Ihnen eine angenehme Reise!
+- Diese sind ***Demodaten***, hier genannte Personennamen, Zugnummern, Buchungscodes, Transaktionsnummern und Beträge sind aus Anonymitätsgründen komplett erfunden und mehrwertsteuerlich unstimmig. Buchungscode/T-Nr. wurde nicht nur unkenntlich gemacht, sondern auch gekürzt, um eine Ähnlichkeit mit realen Daten auszuschließen.
+XX Seite 1 / 1
