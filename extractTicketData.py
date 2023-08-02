@@ -14,6 +14,8 @@ class TrainTicket:
         self.paymentInfo = []
         self.startTravelDate = ""
         self.endTravelDate = ""
+        self.TravelToString = ""
+        self.travelersmessage = ""
         self.zugInfo= []
     
     def __init__(self, n=-1, filename = "demo_Bahntickettext" ):
@@ -44,18 +46,24 @@ class TrainTicket:
                     continue
                 if line.startswith(self.startDateIntro):
                     self.startTravelDate = line[len(self.startDateIntro):].strip()
+                    self.TravelToString += f"\r\nMeine Hinfahrt ist am {self.startTravelDate}\r\n"
                     self.zugInfo.append(f"<p><b>Hinfahrt am {self.startTravelDate}:</b><br>")
                 elif line.startswith(self.endDateIntro):
                     self.endTravelDate = line[len(self.endDateIntro):].strip()
+                    self.TravelToString += f"\r\nMeine Rückfahrt ist am {self.endTravelDate}:\r\n"
                     self.zugInfo.append("</p>")
                     self.zugInfo.append(f"<p><b>Rückfahrt am {self.endTravelDate}:</b><br>")
                 else:
                     text = line.strip(',\r\n \t')
                     if text.__contains__(". a"):
+                        self.gatherTimeAndPlace(text)
                         text = text.replace(". a",".&nbsp;&nbsp;<b>a") + "</b>"
+                    else:
+                        if text.__contains__("IC"):
+                            self.AddTrainNumberAndPlace(text)
                     text+= "<br>"
                     self.zugInfo.append(text)
-        
+        self.SpeakableText()
         ofilename = "TicketDaten_" + self.inputFilePrefix + number_as_string + ".html"
         outputfile = open(ofilename, "w", encoding="utf_8")
         outputfile.write("<!DOCTYPE html><html lang=\"de\"><head><meta charset=\"utf-8\">"+os.linesep)
@@ -65,3 +73,29 @@ class TrainTicket:
         outputfile.write(os.linesep.join(self.zugInfo))
         outputfile.write(os.linesep + "</body></html>")
         outputfile.close()
+        #
+        textfile = "Reiseplan_" + self.inputFilePrefix + number_as_string + ".txt"
+        tfile = open(textfile, "w", encoding="utf_8")
+        tfile.write(self.travelersmessage + "\r\n")
+        tfile.close()
+    
+    def SpeakableText(self):
+        self.travelersmessage = "Hallo, ich werde vom "
+        self.travelersmessage += self.startTravelDate
+        self.travelersmessage += " bis zum " + self.endTravelDate + " eine Bahnreise unternehmen.\r\n Details:\r\n"
+        self.travelersmessage += self.TravelToString
+    def AddTrainNumberAndPlace(self, text):
+        self.TravelToString += "Und zwar habe ich im " + text + " gebucht.\r\n"
+    
+    def gatherTimeAndPlace(self, text):
+        snippets = text.split(" ")
+        for q in snippets:
+            if q.__contains__(":"):
+                self.TravelToString += q + " Uhr "
+            elif len(q.strip()) > 2:
+                self.TravelToString += q.strip() + " "
+            elif q.startswith("a"):
+                self.TravelToString += q.strip() + " "
+            else:
+                self.TravelToString += "vom Gleis "+q.strip()
+        self.TravelToString += "\r\n"
