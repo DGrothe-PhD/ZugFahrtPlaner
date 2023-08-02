@@ -79,15 +79,26 @@ class TrainTicket:
         tfile.write(self.travelersmessage + "\r\n")
         tfile.close()
     
+    def clarify(self, text):
+        s = text.replace("Wg.", "Wagen")
+        s = s.replace("Pl.", "Sitzplatz")
+        s = s.replace("ICE", "I C E")
+        s = s.replace("Hbf", "Hauptbahnhof")
+        return s
+        
     def SpeakableText(self):
         self.travelersmessage = "Hallo, ich werde vom "
         self.travelersmessage += self.startTravelDate
         self.travelersmessage += " bis zum " + self.endTravelDate + " eine Bahnreise unternehmen.\r\n Details:\r\n"
         self.travelersmessage += self.TravelToString
     def AddTrainNumberAndPlace(self, text):
-        self.TravelToString += "Und zwar habe ich im " + text + " gebucht.\r\n"
+        self.TravelToString += "Und zwar habe ich im " + self.clarify(text) + " gebucht.\r\n"
     
     def gatherTimeAndPlace(self, text):
+        if text.__contains__("ab"):
+            text = "Start " + self.clarify(text)
+        else:
+            text = "Ziel " + self.clarify(text)
         snippets = text.split(" ")
         for q in snippets:
             if q.__contains__(":"):
