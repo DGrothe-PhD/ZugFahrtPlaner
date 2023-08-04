@@ -2,6 +2,17 @@
 import os
 
 class TrainTicket:
+    '''Reads and gathers the relevant data from a Deutsche Bahn train ticket.
+    Input: Text file containing the raw text from a printable PDF ticket.
+    For PDFs run ExtractText first.
+    Generates an HTML file and a short summary text file.
+    The text of the summary text file can be read by any synthetic reader.
+    Or you can copy this in an email to your friend. Happy holidays and have fun!
+    
+    Params:
+        filename - the filename of the raw text file. Ending .txt is automatically added.
+        
+    '''
     inputFilePrefix = "demo_Bahntickettext"
     # Strings to be recognized
     def clearing(self):
