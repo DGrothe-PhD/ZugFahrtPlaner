@@ -6,6 +6,23 @@ from PyPDF2 import errors
 
 class ExtractText:
     PlainTextContentFile = "./PlainTextContent.txt"
+    """
+    For desktop usage on Windows or Linux
+    Extracts text from a given PDF file.
+    Output file: PlainTextContent.txt
+    
+    User input:
+     - name of an existing PDF file including its ending
+     - or: exit to quit this program.
+    
+    After one PDF file has successfully been processed,
+    the program quits automatically.
+    
+    
+    Exceptions:
+     - PdfReadError if no readable PDF or reading error occurred
+     - Exception if PDF not found or anything else went wrong
+    """
     
     def __init__(self):
         print("PDF-Textkonverter. \nZum vorzeitigen Beenden tippen Sie 'exit'.")
@@ -18,7 +35,7 @@ class ExtractText:
                 break
             if not self.myPDFpath.endswith(".pdf"):
                 print("Kein PDF-Dateiname eingegeben.")
-                #
+                continue
             try:
                 self.myPDF = PdfReader(open(self.myPDFpath, "rb"))
                 self.processPDF()
@@ -31,7 +48,8 @@ class ExtractText:
                 print(f"{self.myPDFpath} ist nicht aufrufbar. Bitte prüfen Sie Ihre Eingabe!")
                 print(f"Genaue Fehlermeldung: {whatwrong}")
     
-    #Need extra linebreak after platform number
+    # to be extended in the future
+    # Need extra linebreak after platform number
     def clarify(self, txt):
         x = re.sub(r'(\d)(ICE)', r'\1\n\2', txt)
         return x
@@ -44,8 +62,8 @@ class ExtractText:
         with open(self.PlainTextContentFile, "w", encoding="utf_8") as fobj_vb:
             for page in range(0, len(self.myPDF.pages)):
                 currentPage = self.myPDF.pages[page]
-                myText = currentPage.extract_text()
+                self.pdfPlainText = currentPage.extract_text()
                 fobj_vb.write(f"{ln}{ln}-- Seite {page+1} --{ln}")
-                myText = self.clarify(myText)
-                fobj_vb.write(myText)
+                self.pdfPlainText = self.clarify(self.pdfPlainText)
+                fobj_vb.write(self.pdfPlainText)
         fobj_vb.close()
