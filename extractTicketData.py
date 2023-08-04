@@ -46,7 +46,7 @@ class TrainTicket:
                     continue
                 if line.startswith(self.startDateIntro):
                     self.startTravelDate = line[len(self.startDateIntro):].strip()
-                    self.TravelToString += f"\r\nMeine Hinfahrt ist am {self.startTravelDate}\r\n"
+                    self.TravelToString += f"\r\nMeine Hinfahrt ist am {self.startTravelDate}:\r\n"
                     self.zugInfo.append(f"<p><b>Hinfahrt am {self.startTravelDate}:</b><br>")
                 elif line.startswith(self.endDateIntro):
                     self.endTravelDate = line[len(self.endDateIntro):].strip()
