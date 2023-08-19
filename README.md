@@ -10,3 +10,4 @@ Die Ausgabe enthält dann alle und nur die relevanten Infos wie Wagennummer und 
 Ausgabe als
 * minimal formatierte HTML 
 * Fließtext optimiert für digitale Vorlesefunktionen.
+* Python kann dann vorzugsweise gleich selbst den Text vorlesen (Windows-Schnittstelle)
