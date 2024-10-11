@@ -1,4 +1,5 @@
 # ZugFahrtPlaner
+[![Pylint](https://github.com/DGrothe-PhD/ZugFahrtPlaner/actions/workflows/pylint.yml/badge.svg)](https://github.com/DGrothe-PhD/ZugFahrtPlaner/actions/workflows/pylint.yml)
 extract relevant info for planning train trips. Minimal formatted, as HTML and text file. Readable content both for use in an email to your friends or facilitate automatic reading.
 
 ## Wie es funktioniert
@@ -10,4 +11,4 @@ Die Ausgabe enthält dann alle und nur die relevanten Infos wie Wagennummer und 
 Ausgabe als
 * minimal formatierte HTML 
 * Fließtext optimiert für digitale Vorlesefunktionen.
-* Python kann dann vorzugsweise gleich selbst den Text vorlesen (Windows-Schnittstelle)
+* Python kann dann gleich selbst den Text vorlesen (nur getestet über Windows-Schnittstelle, sollte aber in Linux auch funktionieren.)
