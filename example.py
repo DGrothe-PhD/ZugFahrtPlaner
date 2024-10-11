@@ -1,5 +1,6 @@
 #!/usr/bin/python3
 
+import pyttsx3 as tts
 from extractTicketData import TrainTicket
 from ExtractText import ExtractText
 
@@ -9,3 +10,7 @@ from ExtractText import ExtractText
 #textquelle = ExtractText()
 #
 tickettmp = TrainTicket(7)
+
+speaker = tts.init()
+speaker.say(tickettmp.travelersmessage)
+speaker.runAndWait()
