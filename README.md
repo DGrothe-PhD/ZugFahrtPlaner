@@ -1,5 +1,6 @@
 # ZugFahrtPlaner
 [![Pylint](https://github.com/DGrothe-PhD/ZugFahrtPlaner/actions/workflows/pylint.yml/badge.svg)](https://github.com/DGrothe-PhD/ZugFahrtPlaner/actions/workflows/pylint.yml)
+
 extract relevant info for planning train trips. Minimal formatted, as HTML and text file. Readable content both for use in an email to your friends or facilitate automatic reading.
 
 ## Wie es funktioniert
