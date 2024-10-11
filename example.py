@@ -3,7 +3,7 @@
 import pyttsx3 as tts
 from extractTicketData import TrainTicket
 
-#pylint disable=W0718
+#pylint: disable=W0718
 #from ExtractText import ExtractText
 
 #for i in range(1,11):
@@ -21,4 +21,4 @@ except KeyboardInterrupt:
     pass
 except:
     print("TTS error occurred")
-#pylint enable=W0718
+#pylint: enable=W0718

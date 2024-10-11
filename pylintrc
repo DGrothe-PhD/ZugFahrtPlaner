@@ -12,4 +12,5 @@ disable=missing-final-newline,
     missing-module-docstring,
     import-outside-toplevel,
     no-method-argument,
-    too-many-instance-attributes
+    too-many-instance-attributes,
+    consider-using-with

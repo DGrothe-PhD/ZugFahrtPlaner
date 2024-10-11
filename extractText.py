@@ -3,7 +3,6 @@ import re
 from PyPDF2 import PdfReader
 from PyPDF2 import errors
 
-#pylint disable=R1732
 class ExtractText:
     """
     For desktop usage on Windows or Linux
@@ -70,4 +69,3 @@ class ExtractText:
                 fobjVb.write(self.pdfPlainText)
         fobjVb.close()
 
-#pylint enable=R1732
