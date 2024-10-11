@@ -68,4 +68,3 @@ class ExtractText:
                 self.pdfPlainText = self.clarify(self.pdfPlainText)
                 fobjVb.write(self.pdfPlainText)
         fobjVb.close()
-

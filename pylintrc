@@ -13,4 +13,6 @@ disable=missing-final-newline,
     import-outside-toplevel,
     no-method-argument,
     too-many-instance-attributes,
-    consider-using-with
+    consider-using-with,
+    broad-exception-caught,
+    bare-except
