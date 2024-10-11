@@ -3,7 +3,7 @@ import re
 from PyPDF2 import PdfReader
 from PyPDF2 import errors
 
-class ExtractText:
+class extractText:
     """
     For desktop usage on Windows or Linux
     Extracts text from a given PDF file.
@@ -37,9 +37,8 @@ class ExtractText:
                 print("Kein PDF-Dateiname eingegeben.")
                 continue
             try:
-                self.myPDF = PdfReader(open(self.myPDFpath, "rb"))
-                self.myPDF.close()
-                self.processPDF()
+                with PdfReader(open(self.myPDFpath, "rb")) as self.myPDF:
+                    self.processPDF()
                 break
                 #
             except errors.PdfReadError as exP:
@@ -62,11 +61,10 @@ class ExtractText:
         #firstit=True
         ln = '\n'#os.linesep
         # grab all text from PDF per page and put into page list
-        with open(self.plainTextContentFile, "w", encoding="utf_8") as fobj_vb:
-            for page in range(0, len(self.myPDF.pages)):
-                currentPage = self.myPDF.pages[page]
-                self.pdfPlainText = currentPage.extract_text()
-                fobj_vb.write(f"{ln}{ln}-- Seite {page+1} --{ln}")
+        with open(self.plainTextContentFile, "w", encoding="utf_8") as fobjVb:
+            for p, pdfpage in enumerate(self.myPDF.pages):
+                self.pdfPlainText = pdfpage.extract_text()
+                fobjVb.write(f"{ln}{ln}-- Seite {p+1} --{ln}")
                 self.pdfPlainText = self.clarify(self.pdfPlainText)
-                fobj_vb.write(self.pdfPlainText)
-        fobj_vb.close()
+                fobjVb.write(self.pdfPlainText)
+        fobjVb.close()

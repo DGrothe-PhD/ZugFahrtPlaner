@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 import os
 
+
 class TrainTicket:
     '''Reads and gathers the relevant data from a Deutsche Bahn train ticket.
     Input: Text file containing the raw text from a printable PDF ticket.
@@ -27,7 +28,7 @@ class TrainTicket:
         self.paymentInfo = []
         self.startTravelDate = ""
         self.endTravelDate = ""
-        self.TravelToString = ""
+        self.travelToString = ""
         self.travelersmessage = ""
         self.zugInfo= []
 
@@ -61,11 +62,11 @@ class TrainTicket:
                     continue
                 if line.startswith(self.startDateIntro):
                     self.startTravelDate = line[len(self.startDateIntro):].strip()
-                    self.TravelToString += f"\r\nMeine Hinfahrt ist am {self.startTravelDate}:\r\n"
+                    self.travelToString += f"\r\nMeine Hinfahrt ist am {self.startTravelDate}:\r\n"
                     self.zugInfo.append(f"<p><b>Hinfahrt am {self.startTravelDate}:</b><br>")
                 elif line.startswith(self.endDateIntro):
                     self.endTravelDate = line[len(self.endDateIntro):].strip()
-                    self.TravelToString += f"\r\nMeine Rückfahrt ist am {self.endTravelDate}:\r\n"
+                    self.travelToString += f"\r\nMeine Rückfahrt ist am {self.endTravelDate}:\r\n"
                     self.zugInfo.append("</p>")
                     self.zugInfo.append(f"<p><b>Rückfahrt am {self.endTravelDate}:</b><br>")
                 else:
@@ -80,15 +81,15 @@ class TrainTicket:
                     self.zugInfo.append(text)
         #
         ofilename = "TicketDaten_" + self.inputFilePrefix + numAsString + ".html"
-        outputfile = open(ofilename, "w", encoding="utf_8")
-        outputfile.write("<!DOCTYPE html><html lang=\"de\"><head>" + \
-         "<meta charset=\"utf-8\">"+os.linesep)
-        outputfile.write(f"<title>Reise von {self.startTravelDate} bis "+ \
-         f"{self.endTravelDate}</title></head><body>"+os.linesep)
-        outputfile.write(os.linesep.join(self.paymentInfo))
-        outputfile.write(os.linesep)
-        outputfile.write(os.linesep.join(self.zugInfo))
-        outputfile.write(os.linesep + "</body></html>")
+        with open(ofilename, "w", encoding="utf_8") as outputfile:
+            outputfile.write("<!DOCTYPE html><html lang=\"de\"><head>" + \
+             "<meta charset=\"utf-8\">"+os.linesep)
+            outputfile.write(f"<title>Reise von {self.startTravelDate} bis "+ \
+             f"{self.endTravelDate}</title></head><body>"+os.linesep)
+            outputfile.write(os.linesep.join(self.paymentInfo))
+            outputfile.write(os.linesep)
+            outputfile.write(os.linesep.join(self.zugInfo))
+            outputfile.write(os.linesep + "</body></html>")
         outputfile.close()
         #
         self.generateSpeakableText()
@@ -108,18 +109,18 @@ class TrainTicket:
         self.travelersmessage += self.startTravelDate
         self.travelersmessage += " bis zum " + self.endTravelDate + \
         " eine Bahnreise unternehmen.\r\n Details:\r\n"
-        self.travelersmessage += self.TravelToString
+        self.travelersmessage += self.travelToString
 
     def writeTextFile(self, numAsString):
         """write speakable text to a plain text file"""
         textfile = f"Reiseplan_{self.inputFilePrefix}{numAsString}.txt"
-        tfile = open(textfile, "w", encoding="utf_8")
-        tfile.write(self.travelersmessage + "\r\n")
+        with open(textfile, "w", encoding="utf_8") as tfile:
+            tfile.write(self.travelersmessage + "\r\n")
         tfile.close()
 
     def addTrainNumberAndPlace(self, text):
         """Add train number and seat number"""
-        self.TravelToString += f"Und zwar habe ich im {self.clarify(text)} gebucht.\r\n"
+        self.travelToString += f"Und zwar habe ich im {self.clarify(text)} gebucht.\r\n"
 
     def gatherTimeAndPlace(self, text):
         """gather timetable details"""
@@ -131,11 +132,11 @@ class TrainTicket:
         #
         for q in snippets:
             if ":" in q:
-                self.TravelToString += q + " Uhr "
+                self.travelToString += q + " Uhr "
             elif len(q.strip()) > 2:
-                self.TravelToString += q.strip() + " "
+                self.travelToString += q.strip() + " "
             elif q.startswith("a"):
-                self.TravelToString += q.strip() + " "
+                self.travelToString += q.strip() + " "
             else:
-                self.TravelToString += "vom Gleis "+q.strip()
-        self.TravelToString += "\r\n"
+                self.travelToString += "vom Gleis "+q.strip()
+        self.travelToString += "\r\n"

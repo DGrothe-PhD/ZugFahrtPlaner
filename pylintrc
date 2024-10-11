@@ -11,4 +11,5 @@ argument-naming-style=camelCase
 disable=missing-final-newline,
     missing-module-docstring,
     import-outside-toplevel,
-    no-method-argument
+    no-method-argument,
+    too-many-instance-attributes
