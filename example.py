@@ -11,6 +11,11 @@ from extractTicketData import TrainTicket
 #
 tickettmp = TrainTicket(7)
 
-speaker = tts.init()
-speaker.say(tickettmp.travelersmessage)
-speaker.runAndWait()
+try:
+    speaker = tts.init()
+    speaker.say(tickettmp.travelersmessage)
+    speaker.runAndWait()
+except KeyboardInterrupt:
+    pass
+except:
+    print("TTS error occurred")

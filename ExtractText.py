@@ -1,11 +1,9 @@
 #!/usr/bin/python
-import os
 import re
 from PyPDF2 import PdfReader
 from PyPDF2 import errors
 
 class ExtractText:
-    PlainTextContentFile = "./PlainTextContent.txt"
     """
     For desktop usage on Windows or Linux
     Extracts text from a given PDF file.
@@ -23,8 +21,10 @@ class ExtractText:
      - PdfReadError if no readable PDF or reading error occurred
      - Exception if PDF not found or anything else went wrong
     """
-    
+    plainTextContentFile = "./PlainTextContent.txt"
+    #
     def __init__(self):
+        """interactive PDF extractor"""
         print("PDF-Textkonverter. \nZum vorzeitigen Beenden tippen Sie 'exit'.")
         while True:
             self.pdfPlainText = ""
@@ -38,6 +38,7 @@ class ExtractText:
                 continue
             try:
                 self.myPDF = PdfReader(open(self.myPDFpath, "rb"))
+                self.myPDF.close()
                 self.processPDF()
                 break
                 #
@@ -47,19 +48,21 @@ class ExtractText:
             except Exception as whatwrong:
                 print(f"{self.myPDFpath} ist nicht aufrufbar. Bitte prüfen Sie Ihre Eingabe!")
                 print(f"Genaue Fehlermeldung: {whatwrong}")
-    
+
     # to be extended in the future
     # Need extra linebreak after platform number
     def clarify(self, txt):
+        """clean stuff"""
         x = re.sub(r'(\d)(ICE)', r'\1\n\2', txt)
         return x
 
-    def processPDF(self):# initialize page list
-        pagelist = []
-        firstit=True
+    def processPDF(self):
+        """initialize page list"""
+        #pagelist = []
+        #firstit=True
         ln = '\n'#os.linesep
-        # grab all text from PDF per page and put into page list    
-        with open(self.PlainTextContentFile, "w", encoding="utf_8") as fobj_vb:
+        # grab all text from PDF per page and put into page list
+        with open(self.plainTextContentFile, "w", encoding="utf_8") as fobj_vb:
             for page in range(0, len(self.myPDF.pages)):
                 currentPage = self.myPDF.pages[page]
                 self.pdfPlainText = currentPage.extract_text()

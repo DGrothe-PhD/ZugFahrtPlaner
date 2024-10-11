@@ -47,14 +47,15 @@ class TrainTicket:
                 if line.startswith(tuple( self.signsOfTravelData)):
                     timefound = True
                     continue
-                elif line.startswith(self.startDateIntro):
+                #
+                if line.startswith(self.startDateIntro):
                     timefound = True
                 # Ende der Reisedaten
                 if line.startswith(("Wichtige Nutzungshinweise:", "amtlichem Lichtbildausweis")):
                     self.zugInfo.append("</p>")
                     break
-                if line.startswith("Nichtraucher"): continue
-                if line.strip() == "Hinfahrt:" or line.strip() == "Rückfahrt:": continue
+                if line.startswith("Nichtraucher") or line.strip() in {"Hinfahrt:", "Rückfahrt:"}:
+                    continue
                 #
                 if not timefound:
                     continue
@@ -74,7 +75,7 @@ class TrainTicket:
                         text = text.replace(". a",".&nbsp;&nbsp;<b>a") + "</b>"
                     else:
                         if "IC" in text:
-                            self.AddTrainNumberAndPlace(text)
+                            self.addTrainNumberAndPlace(text)
                     text+= "<br>"
                     self.zugInfo.append(text)
         #
@@ -90,8 +91,8 @@ class TrainTicket:
         outputfile.write(os.linesep + "</body></html>")
         outputfile.close()
         #
-        self.GenerateSpeakableText()
-        self.WriteTextFile(numAsString)
+        self.generateSpeakableText()
+        self.writeTextFile(numAsString)
 
     def clarify(self, text):
         """Un-abbreviate stuff."""
@@ -101,7 +102,7 @@ class TrainTicket:
         s = s.replace("Hbf", "Hauptbahnhof")
         return s
 
-    def GenerateSpeakableText(self):
+    def generateSpeakableText(self):
         """Generate a full-sentence text with the main info."""
         self.travelersmessage = "Hallo, ich werde vom "
         self.travelersmessage += self.startTravelDate
@@ -109,14 +110,14 @@ class TrainTicket:
         " eine Bahnreise unternehmen.\r\n Details:\r\n"
         self.travelersmessage += self.TravelToString
 
-    def WriteTextFile(self, numAsString):
+    def writeTextFile(self, numAsString):
         """write speakable text to a plain text file"""
         textfile = f"Reiseplan_{self.inputFilePrefix}{numAsString}.txt"
         tfile = open(textfile, "w", encoding="utf_8")
         tfile.write(self.travelersmessage + "\r\n")
         tfile.close()
 
-    def AddTrainNumberAndPlace(self, text):
+    def addTrainNumberAndPlace(self, text):
         """Add train number and seat number"""
         self.TravelToString += f"Und zwar habe ich im {self.clarify(text)} gebucht.\r\n"
 
