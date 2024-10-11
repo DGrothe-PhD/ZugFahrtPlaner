@@ -6,7 +6,8 @@ class TrainTicket:
     Input: Text file containing the raw text from a printable PDF ticket.
     For PDFs run ExtractText first.
     Generates an HTML file and a short summary text file.
-    The text of the summary text file can be read by any synthetic reader.
+    The summary text file can be read by any synthetic reader.
+    We recommend py3-tts here, see the enclosed example.py.
     Or you can copy this in an email to your friend. Happy holidays and have fun!
     
     Params:
@@ -68,18 +69,19 @@ class TrainTicket:
                     self.zugInfo.append(f"<p><b>Rückfahrt am {self.endTravelDate}:</b><br>")
                 else:
                     text = line.strip(',\r\n \t')
-                    if text.__contains__(". a"):
+                    if ". a" in text:
                         self.gatherTimeAndPlace(text)
                         text = text.replace(". a",".&nbsp;&nbsp;<b>a") + "</b>"
                     else:
-                        if text.__contains__("IC"):
+                        if "IC" in text:
                             self.AddTrainNumberAndPlace(text)
                     text+= "<br>"
                     self.zugInfo.append(text)
         #
         ofilename = "TicketDaten_" + self.inputFilePrefix + numAsString + ".html"
         outputfile = open(ofilename, "w", encoding="utf_8")
-        outputfile.write("<!DOCTYPE html><html lang=\"de\"><head><meta charset=\"utf-8\">"+os.linesep)
+        outputfile.write("<!DOCTYPE html><html lang=\"de\"><head>" + \
+         "<meta charset=\"utf-8\">"+os.linesep)
         outputfile.write(f"<title>Reise von {self.startTravelDate} bis "+ \
          f"{self.endTravelDate}</title></head><body>"+os.linesep)
         outputfile.write(os.linesep.join(self.paymentInfo))
@@ -109,25 +111,25 @@ class TrainTicket:
 
     def WriteTextFile(self, numAsString):
         """write speakable text to a plain text file"""
-        textfile = "Reiseplan_" + self.inputFilePrefix + numAsString + ".txt"
+        textfile = f"Reiseplan_{self.inputFilePrefix}{numAsString}.txt"
         tfile = open(textfile, "w", encoding="utf_8")
         tfile.write(self.travelersmessage + "\r\n")
         tfile.close()
 
     def AddTrainNumberAndPlace(self, text):
         """Add train number and seat number"""
-        self.TravelToString += "Und zwar habe ich im " + self.clarify(text) + " gebucht.\r\n"
+        self.TravelToString += f"Und zwar habe ich im {self.clarify(text)} gebucht.\r\n"
 
     def gatherTimeAndPlace(self, text):
         """gather timetable details"""
-        if text.__contains__("ab"):
+        if "ab" in text:
             text = "Start " + self.clarify(text)
         else:
             text = "Ziel " + self.clarify(text)
         snippets = text.split(" ")
         #
         for q in snippets:
-            if q.__contains__(":"):
+            if ":" in q:
                 self.TravelToString += q + " Uhr "
             elif len(q.strip()) > 2:
                 self.TravelToString += q.strip() + " "
