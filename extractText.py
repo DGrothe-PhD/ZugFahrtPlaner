@@ -3,7 +3,8 @@ import re
 from PyPDF2 import PdfReader
 from PyPDF2 import errors
 
-class extractText:
+#pylint disable=R1732
+class ExtractText:
     """
     For desktop usage on Windows or Linux
     Extracts text from a given PDF file.
@@ -37,8 +38,8 @@ class extractText:
                 print("Kein PDF-Dateiname eingegeben.")
                 continue
             try:
-                with PdfReader(open(self.myPDFpath, "rb")) as self.myPDF:
-                    self.processPDF()
+                self.myPDF = PdfReader(open(self.myPDFpath, "rb"))
+                self.processPDF()
                 break
                 #
             except errors.PdfReadError as exP:
@@ -68,3 +69,5 @@ class extractText:
                 self.pdfPlainText = self.clarify(self.pdfPlainText)
                 fobjVb.write(self.pdfPlainText)
         fobjVb.close()
+
+#pylint enable=R1732
